@@ -1,0 +1,55 @@
+---
+title: "Analyzing Workstation Usage at the Toronto Public Library From 2012 to 2022"
+author: 
+  - Fares Alkorani
+thanks: "Code and data are available at: https://github.com/faralk/tpl-workstations."
+date: today
+date-format: long
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(palmerpenguins)
+```
+
+# Introduction
+
+# Data {#sec-data}
+
+(@fig-workstations)
+
+```{r, fig.width = 10, fig.height = 12}
+#| label: fig-workstations
+#| fig-cap: The annual number of public or drop-in workstations used from 2012 to 2022 for each library in the Toronto Public Library system.
+#| echo: false
+#| warning: false
+#| message: false
+
+# https://stackoverflow.com/questions/40754680/how-to-resize-ggplot-graph-in-r-notebook
+
+analysis_data <- read_csv(here::here("outputs/data/analysis_data.csv"))
+
+analysis_data |> 
+  ggplot(mapping = aes(x=year, y=sessions,color=branch_name)) + 
+  scale_x_continuous(breaks = pretty(analysis_data$year, n = 11)) +
+  theme_minimal() + 
+  geom_line(alpha=0.35) + 
+  guides(colour = guide_legend(title.position = "top", title.hjust = 0)) +
+  theme(legend.key.size = unit(0.5, 'cm'), 
+        legend.position="bottom",
+        legend.justification = "left") +
+  labs(x = "Year",
+       y = "Number of Workstation Sessions", 
+       color='Toronto Public Library Branches',
+       caption= "Data source: Open Data Toronto")
+```
+# References
+
+

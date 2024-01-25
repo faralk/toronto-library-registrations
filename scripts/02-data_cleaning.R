@@ -47,6 +47,7 @@ library_branch_general_information <-
 
 cleaned_library_branch_general_information <-
   library_branch_general_information |>
+  filter(PhysicalBranch==1) |>
   janitor::clean_names() |>
   select(branch_code, branch_name)
 

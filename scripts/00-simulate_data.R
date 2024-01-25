@@ -21,10 +21,10 @@ set.seed(853)
 
 simulated_workstation_data <- 
   tibble(
-    branches = rep(paste("branch_", 1:100), each = 11),
+    branch_name = rep(paste("branch_", 1:100), each = 11),
     # Create 100 different library branches, suffixed by a unique number 1 through 100
     # Based on Christopher DuBois https://stackoverflow.com/a/1439843    
     year = rep(x = 2012:2022, times = 100), 
-    usage = sample(x = 1:120000, size = 100 * 11))
+    sessions = sample(x = 1:120000, size = 100 * 11))
 
 head(simulated_workstation_data)
